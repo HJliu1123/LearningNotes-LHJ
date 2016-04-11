@@ -54,16 +54,33 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
         self.score?.max_star = 5
         self.score?.show_star = 5
         
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("pushBookNotification:"), name: "pushBookNotification", object: nil)
         
     }
-
+    
+    func pushBookNotification(notification: NSNotification) {
+        let dict = notification.userInfo
+        if (String(dict!["success"]!)) == "true" {
+            ProgressHUD.showSuccess("上传成功")
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                
+            })
+        } else {
+            ProgressHUD.showError("上传失败")
+            
+        }
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     deinit {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         
     }
     
@@ -78,16 +95,18 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
     func sure() {
         
         
-        let dict : Dictionary<String, AnyObject> = [
-            "BookName" : (bookTitle!.bookName!.text)!,
-            "BookEditor" : (bookTitle!.bookEditor!.text)!,
-            "BookCover" : (bookTitle!.bookName!.text)!,
-            "title" : self.bookTitle!,
+        let dict = [
+            "BookName" : (self.bookTitle?.bookName?.text)!,
+            "BookEditor" : (self.bookTitle?.bookEditor?.text)!,
+            "BookCover" : (self.bookTitle?.bookCover?.currentImage)!,
+            "title" : self.book_Title,
             "score" : String((score?.show_star)!),
             "type" : self.type,
             "detaileType" : self.detailType,
             "description" : self.book_Description
         ]
+        
+        ProgressHUD.show("")
         
         HJPushBook.pushBookInBack(dict)
         

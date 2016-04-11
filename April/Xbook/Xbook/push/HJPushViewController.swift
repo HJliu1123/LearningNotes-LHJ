@@ -8,14 +8,32 @@
 
 import UIKit
 
-class HJPushViewController: UIViewController {
-
+class HJPushViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var dataArr = NSMutableArray()
+    
+    var tableView : UITableView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.whiteColor()
         
         self.setNavigationBar()
+        
+        self.tableView = UITableView(frame: self.view.frame)
+        self.tableView?.delegate = self
+        self.tableView?.dataSource = self
+        self.view.addSubview(self.tableView!)
+        self.tableView?.registerClass(HJPushBookCell.classForCoder(), forCellReuseIdentifier: "Cell")
+        self.tableView?.tableFooterView = UIView()
+        
+        self.tableView?.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefresh"))
+        
+        self.tableView?.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefresh"))
+        
+        self.tableView?.mj_header.beginRefreshing()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,5 +72,67 @@ class HJPushViewController: UIViewController {
         
     }
     
+    //上拉加载、下拉刷新
+    func headerRefresh() {
+        let query = AVQuery(className: "Book")
+        query.orderByDescending("creatAt")
+        query.limit = 20
+        query.skip = 0
+        query.whereKey("user", equalTo: AVUser.currentUser())
+        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            self.tableView?.mj_header.endRefreshing()
+            
+            self.dataArr.removeAllObjects()
+            self.dataArr.addObjectsFromArray(results)
+            self.tableView?.reloadData()
+        }
+        
+        
+    }
+    
+    
+    func footerRefresh() {
+        let query = AVQuery(className: "Book")
+        query.orderByDescending("creatAt")
+        query.limit = 20
+        query.skip = self.dataArr.count
+        query.whereKey("user", equalTo: AVUser.currentUser())
+        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            self.tableView?.mj_footer.endRefreshing()
+            
+            self.dataArr.addObjectsFromArray(results)
+            self.tableView?.reloadData()
+        }
+
+    }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.dataArr.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = self.tableView?.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? HJPushBookCell
+        let dict = self.dataArr[indexPath.row] as? AVObject
+        
+        cell?.bookName?.text = "《" + (dict!["BookName"]as! String) + "》:" + (dict!["title"]as! String)
+        cell?.editor?.text = "作者" + (dict!["BookEditor"]as! String)
+        
+        let date = dict!["createdAt"] as? NSDate
+        let format = NSDateFormatter()
+        format.dateFormat = "yyyy-MM-dd hh:mm"
+        cell?.more?.text = format.stringFromDate(date!)
+        
+        let coverFile = dict!["cover"] as? AVFile
+        
+        cell?.cover?.sd_setImageWithURL(NSURL(string: (coverFile?.url)!), placeholderImage: UIImage(named: "Cover"))
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 88
+    }
 
 }

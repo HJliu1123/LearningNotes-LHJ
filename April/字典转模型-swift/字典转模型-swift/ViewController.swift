@@ -25,7 +25,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.connArr = self.getConnArr()
         
-        
     }
     
     func getConnArr() ->NSArray {
@@ -34,13 +33,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if connArr == nil {
             
-            
-            
             let path = NSBundle.mainBundle().pathForResource("ConnectList", ofType: "plist")
             
             let arr = NSArray.init(contentsOfFile: path!)
-            
-            
             
             for dict in arr! {
                 
@@ -49,7 +44,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 connArray.addObject(conn)
                 
             }
-            
             
         }
         
