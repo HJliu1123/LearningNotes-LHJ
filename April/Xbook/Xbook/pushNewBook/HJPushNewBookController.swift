@@ -164,6 +164,7 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Value1, reuseIdentifier: "cell")
+        //移除cell中的所有内容
         for view in cell.contentView.subviews {
             view.removeFromSuperview()
         }
@@ -206,9 +207,9 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if showScore && indexPath.row > 5 {
+        if showScore && indexPath.row >= 5 {
             return 88
-        } else if !self.showScore && indexPath.row > 4 {
+        } else if !self.showScore && indexPath.row >= 4 {
             return 88
         } else {
             return 44

@@ -11,7 +11,7 @@ import UIKit
 class HJPushViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var dataArr = NSMutableArray()
-    
+    var navigationView : UIView!
     var tableView : UITableView?
     
     override func viewDidLoad() {
@@ -35,7 +35,16 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView?.mj_header.beginRefreshing()
         
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationView.hidden = false
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationView.hidden = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,7 +53,7 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
     //设置导航栏
     func setNavigationBar() {
         
-        let navigationView = UIView(frame: CGRectMake(0, -20, SCREEN_WIDTH,65))
+        navigationView = UIView(frame: CGRectMake(0, -20, SCREEN_WIDTH,65))
         navigationView.backgroundColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.addSubview(navigationView)
         //新建书评按钮
@@ -71,6 +80,15 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
+        let vc = HJBookDetailViewController()
+        vc.BookObject = self.dataArr[indexPath.row] as? AVObject
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     //上拉加载、下拉刷新
     func headerRefresh() {
