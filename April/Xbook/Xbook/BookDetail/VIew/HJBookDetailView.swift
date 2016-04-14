@@ -21,6 +21,7 @@ class HJBookDetailView: UIView {
     var score : LDXScore?
     var cover : UIImageView?
     
+    //各种标签的frame有些值写死了
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.VIEW_HEIGHT = frame.size.height
@@ -32,21 +33,21 @@ class HJBookDetailView: UIView {
         self.Bookname?.font = UIFont(name: MY_FONT, size: 18)
         self.addSubview(self.Bookname!)
         
-        self.Editor = UILabel(frame: CGRectMake((VIEW_HEIGHT - 16) / 1.273 + 16, 8 + VIEW_HEIGHT / 4, VIEW_WIDTH - (VIEW_HEIGHT - 16) / 1.273 - 16, VIEW_HEIGHT / 4))
+        self.Editor = UILabel(frame: CGRectMake((VIEW_HEIGHT - 16) / 1.273 + 16, VIEW_HEIGHT / 4, VIEW_WIDTH - (VIEW_HEIGHT - 16) / 1.273 - 16, VIEW_HEIGHT / 4))
         self.Editor?.font = UIFont(name: MY_FONT, size: 18)
         self.addSubview(self.Editor!)
         
-        self.userName = UILabel(frame: CGRectMake((VIEW_HEIGHT - 16) / 1.273 + 16, 24 + VIEW_HEIGHT / 4 + VIEW_HEIGHT / 6, VIEW_WIDTH - (VIEW_HEIGHT - 16) / 1.273 - 16, VIEW_HEIGHT / 6))
+        self.userName = UILabel(frame: CGRectMake((VIEW_HEIGHT - 16) / 1.273 + 16, VIEW_HEIGHT / 4 + VIEW_HEIGHT / 6, VIEW_WIDTH - (VIEW_HEIGHT - 16) / 1.273 - 16, VIEW_HEIGHT / 6))
         self.userName?.font = UIFont(name: MY_FONT, size: 13)
         self.userName?.textColor = RGB(35, g: 87, b: 139)
         self.addSubview(self.userName!)
         
-        self.date = UILabel(frame: CGRectMake((VIEW_HEIGHT - 16) / 1.273 + 16, 16 + VIEW_HEIGHT / 4 + VIEW_HEIGHT / 6 * 2, 80, VIEW_HEIGHT / 6))
+        self.date = UILabel(frame: CGRectMake((VIEW_HEIGHT - 16) / 1.273 + 16, VIEW_HEIGHT / 4 + VIEW_HEIGHT / 6 * 2 - 8, 80, VIEW_HEIGHT / 6))
         self.date?.font = UIFont(name: MY_FONT, size: 13)
         self.date?.textColor = RGB(35, g: 87, b: 139)
         self.addSubview(self.date!)
         
-        self.score = LDXScore(frame: CGRectMake((VIEW_HEIGHT - 16) / 1.273 + 16, 16 + VIEW_HEIGHT / 4 + VIEW_HEIGHT / 6 * 2, 80, VIEW_HEIGHT / 6))
+        self.score = LDXScore(frame: CGRectMake((VIEW_HEIGHT - 16) / 1.273 + 16, 8 + VIEW_HEIGHT / 4 + VIEW_HEIGHT / 6 * 2, 80, VIEW_HEIGHT / 6))
         self.score?.isSelect = false
         self.score?.normalImg = UIImage(named: "btn_star_evaluation_normal")
         self.score?.highlightImg = UIImage(named: "btn_star_evaluation_press")
