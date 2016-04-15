@@ -10,6 +10,8 @@
 		4916835D1CBF928A000497B4 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 491683591CBF928A000497B4 /* InputView.m */; };
 		4916835E1CBF928A000497B4 /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4916835A1CBF928A000497B4 /* InputView.xib */; };
 		4916835F1CBF928A000497B4 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4916835C1CBF928A000497B4 /* UIViewExt.m */; };
+		491683631CC09119000497B4 /* HJCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491683621CC09119000497B4 /* HJCommentViewController.swift */; };
+		491683651CC09A62000497B4 /* HJDiscussCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491683641CC09A62000497B4 /* HJDiscussCell.swift */; };
 		4972F5831CB7A65B00770F9C /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4972F5591CB7A65B00770F9C /* MJRefreshAutoFooter.m */; };
 		4972F5841CB7A65B00770F9C /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4972F55B1CB7A65B00770F9C /* MJRefreshBackFooter.m */; };
 		4972F5851CB7A65B00770F9C /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4972F55D1CB7A65B00770F9C /* MJRefreshComponent.m */; };
@@ -144,6 +146,8 @@
 		4916835A1CBF928A000497B4 /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
 		4916835B1CBF928A000497B4 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		4916835C1CBF928A000497B4 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		491683621CC09119000497B4 /* HJCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJCommentViewController.swift; sourceTree = "<group>"; };
+		491683641CC09A62000497B4 /* HJDiscussCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJDiscussCell.swift; sourceTree = "<group>"; };
 		4972F5581CB7A65B00770F9C /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		4972F5591CB7A65B00770F9C /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		4972F55A1CB7A65B00770F9C /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				4972F61B1CBCB7A300770F9C /* HJBookDetailViewController.swift */,
+				491683621CC09119000497B4 /* HJCommentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 			children = (
 				4972F6191CBC967500770F9C /* HJBookDetailView.swift */,
 				4972F61D1CBCDB7D00770F9C /* HJBookViewTabbar.swift */,
+				491683641CC09A62000497B4 /* HJDiscussCell.swift */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -1174,6 +1180,7 @@
 				4972F5881CB7A65B00770F9C /* MJRefreshAutoGifFooter.m in Sources */,
 				4972F5C61CB88FC300770F9C /* UIImageView+WebCache.m in Sources */,
 				4972F5BE1CB88FC300770F9C /* SDWebImageDownloaderOperation.m in Sources */,
+				491683631CC09119000497B4 /* HJCommentViewController.swift in Sources */,
 				4972F58A1CB7A65B00770F9C /* MJRefreshAutoStateFooter.m in Sources */,
 				49DC39EB1C8F1C0900A0F9D3 /* AKSegmentedControl.m in Sources */,
 				4972F5C41CB88FC300770F9C /* UIImage+WebP.m in Sources */,
@@ -1184,6 +1191,7 @@
 				4972F5C01CB88FC300770F9C /* SDWebImagePrefetcher.m in Sources */,
 				4972F5BA1CB88FC300770F9C /* SDImageCache.m in Sources */,
 				49D2BE961C4F224C0080503E /* config.swift in Sources */,
+				491683651CC09A62000497B4 /* HJDiscussCell.swift in Sources */,
 				49D2BEAD1C4F247B0080503E /* HJMoreViewController.swift in Sources */,
 				4972F61E1CBCDB7D00770F9C /* HJBookViewTabbar.swift in Sources */,
 				49D2BEF81C5200CE0080503E /* HJPhotoPickerController.swift in Sources */,

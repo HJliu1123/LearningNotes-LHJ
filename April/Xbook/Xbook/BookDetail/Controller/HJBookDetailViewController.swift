@@ -27,6 +27,7 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, In
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.backgroundColor = UIColor.whiteColor()
         
         self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
@@ -95,6 +96,54 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, In
         
     }
     
+    func publishButtonDidClick(button: UIButton!) {
+        
+        ProgressHUD.show("")
+        
+        let object = AVObject(className: "discuss")
+        object.setObject(self.input?.inputTextView?.text, forKey: "text")
+        object.setObject(AVUser.currentUser(), forKey: "user")
+        object.setObject(self.BookObject, forKey: "BookObject")
+        object.saveInBackgroundWithBlock { (success, error) -> Void in
+            if success {
+                self.input?.inputTextView?.resignFirstResponder()
+                ProgressHUD.showSuccess("评论成功")
+            } else {
+            
+            }
+        }
+       
+    }
+    
+    
+    
+    func textViewHeightDidChange(height: CGFloat) {
+        self.input?.height = height + 10
+        self.input?.bottom = SCREEN_HIGHT - self.keyBoardHeight
+    }
+    
+    
+    func keyboardWillShow(inputView: InputView!, keyboardHeight: CGFloat, animationDuration duration: NSTimeInterval, animationCurve: UIViewAnimationCurve) {
+        self.keyBoardHeight = keyboardHeight
+        UIView.animateWithDuration(duration, delay: 0, options: .BeginFromCurrentState, animations: { () -> Void in
+            self.input?.bottom = SCREEN_HIGHT - keyboardHeight
+            self.layView?.alpha = 0
+            }) { (finish) -> Void in
+                
+        }
+        
+    }
+    
+    func keyboardWillHide(inputView: InputView!, keyboardHeight: CGFloat, animationDuration duration: NSTimeInterval, animationCurve: UIViewAnimationCurve) {
+        
+        UIView.animateWithDuration(duration, delay: 0, options: .BeginFromCurrentState, animations: { () -> Void in
+            self.input?.bottom = SCREEN_HIGHT + (self.input?.height)!
+            self.layView?.alpha = 0.2
+            }) { (finish) -> Void in
+                self.layView?.hidden = true
+        }
+    }
+    
     
     func comment() {
         
@@ -104,23 +153,71 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, In
             self.input?.delegate = self
             self.view.addSubview(self.input!)
         }
-        
-        
+        if self.layView == nil {
+            self.layView = UIView(frame: self.view.frame)
+            self.layView?.backgroundColor = UIColor.grayColor()
+            self.layView?.alpha = 0;
+            let tap = UITapGestureRecognizer(target: self, action: Selector("tapInputView"))
+            self.layView?.addGestureRecognizer(tap)
+        }
+        self.view.insertSubview(self.layView!, belowSubview: self.input!)
+        self.layView?.hidden = false
+        self.input?.inputTextView?.becomeFirstResponder()
         
     }
+    
+    func tapInputView() {
+        
+        self.input?.inputTextView?.resignFirstResponder()
+        
+    }
+
     
     func commentController() {
-        print("1")
+        
+        let vc = HJCommentViewController()
+        HJGeneralFactory.addTitleWithTitle(vc, title1: "", title2: "关闭")
+        self.presentViewController(vc, animated: true) { () -> Void in
+            
+        }
+        
     }
     
-    func likeBook() {
-        print("2")
+    func likeBook(button : UIButton) {
+        button.enabled = false
+        button.setImage(UIImage(named: "redheart"), forState: .Normal)
+        
+        let query = AVQuery(className: "Love")
+        query.whereKey("user", equalTo: AVUser.currentUser())
+        query.whereKey("BookObject", equalTo: self.BookObject)
+        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            
+            if results != nil && results.count != 0 {
+                for var object in results {
+                    object = (object as? AVObject)!
+                    object.deleteEventually()
+                }
+                button.setImage(UIImage(named: "heart"), forState: .Normal)
+            } else {
+                let object = AVObject(className: "Love")
+                object.setObject(AVUser.currentUser(), forKey: "user")
+                object.setObject(self.BookObject, forKey: "BookObject")
+                object.saveInBackgroundWithBlock({ (success, error) -> Void in
+                    if success {
+                        button.setImage(UIImage(named: "solidheart"), forState: .Normal)
+                    } else {
+                        ProgressHUD.showError("操作失败")
+                    }
+                })
+            }
+            button.enabled = true
+            
+        }
     }
     
     func shareAction() {
         print("3")
     }
-    
     
     
     

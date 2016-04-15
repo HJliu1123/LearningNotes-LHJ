@@ -12,7 +12,7 @@ protocol HJBookViewTabbarDelegate {
     
     func comment()
     func commentController()
-    func likeBook()
+    func likeBook(button : UIButton)
     func shareAction()
     
 }
@@ -74,7 +74,7 @@ class HJBookViewTabbar: UIView {
         case 1:
             delegate?.commentController()
         case 2:
-            delegate?.likeBook()
+            delegate?.likeBook(button)
         case 3:
             delegate?.shareAction()
         default :
