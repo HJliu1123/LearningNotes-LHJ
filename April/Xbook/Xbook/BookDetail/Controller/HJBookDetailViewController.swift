@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate {
+class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, InputViewDelegate {
     
     var BookObject : AVObject?
     
@@ -18,6 +18,11 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate {
     
     var BookTextView : UITextView?
     
+    var input : InputView?
+    
+    var layView : UIView?
+    
+    var keyBoardHeight : CGFloat = 0.0
     
     
     override func viewDidLoad() {
@@ -38,6 +43,7 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate {
         self.BookTextView?.text = self.BookObject!["description"] as? String
         self.view.addSubview(self.BookTextView!)
         
+        self.isLove()
         
     }
 
@@ -75,8 +81,32 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate {
         
     }
     
+    func isLove() {
+        
+        let query = AVQuery(className: "Love")
+        query.whereKey("user", equalTo: AVUser.currentUser())
+        query.whereKey("BookObject", equalTo: self.BookObject)
+        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            if results != nil && results.count != 0 {
+                let button = self.BookViewTabbar?.viewWithTag(2) as? UIButton
+                button?.setImage(UIImage(named: "solidheard"), forState: .Normal)
+            }
+        }
+        
+    }
+    
+    
     func comment() {
-        print("0")
+        
+        if self.input == nil {
+            self.input = NSBundle.mainBundle().loadNibNamed("InputView", owner: self, options: nil).last as? InputView
+            self.input?.frame = CGRectMake(0, SCREEN_HIGHT - 44, SCREEN_WIDTH, 44)
+            self.input?.delegate = self
+            self.view.addSubview(self.input!)
+        }
+        
+        
+        
     }
     
     func commentController() {

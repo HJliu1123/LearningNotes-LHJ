@@ -8,3 +8,4 @@
 #import "XKeyBoard.h"
 #import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
+#import "inputView.h"

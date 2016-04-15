@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4916835D1CBF928A000497B4 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 491683591CBF928A000497B4 /* InputView.m */; };
+		4916835E1CBF928A000497B4 /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4916835A1CBF928A000497B4 /* InputView.xib */; };
+		4916835F1CBF928A000497B4 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4916835C1CBF928A000497B4 /* UIViewExt.m */; };
 		4972F5831CB7A65B00770F9C /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4972F5591CB7A65B00770F9C /* MJRefreshAutoFooter.m */; };
 		4972F5841CB7A65B00770F9C /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4972F55B1CB7A65B00770F9C /* MJRefreshBackFooter.m */; };
 		4972F5851CB7A65B00770F9C /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4972F55D1CB7A65B00770F9C /* MJRefreshComponent.m */; };
@@ -136,6 +139,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		491683581CBF928A000497B4 /* InputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputView.h; sourceTree = "<group>"; };
+		491683591CBF928A000497B4 /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
+		4916835A1CBF928A000497B4 /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
+		4916835B1CBF928A000497B4 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		4916835C1CBF928A000497B4 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		4972F5581CB7A65B00770F9C /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		4972F5591CB7A65B00770F9C /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		4972F55A1CB7A65B00770F9C /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -330,6 +338,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		491683571CBF928A000497B4 /* InputView */ = {
+			isa = PBXGroup;
+			children = (
+				491683581CBF928A000497B4 /* InputView.h */,
+				491683591CBF928A000497B4 /* InputView.m */,
+				4916835A1CBF928A000497B4 /* InputView.xib */,
+				4916835B1CBF928A000497B4 /* UIViewExt.h */,
+				4916835C1CBF928A000497B4 /* UIViewExt.m */,
+			);
+			path = InputView;
+			sourceTree = "<group>";
+		};
 		4972F5561CB7A65B00770F9C /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -839,6 +859,7 @@
 		49D2BED11C51BE8C0080503E /* ThirdKit */ = {
 			isa = PBXGroup;
 			children = (
+				491683571CBF928A000497B4 /* InputView */,
 				4972F5961CB88FC300770F9C /* SDWebImage */,
 				4972F5561CB7A65B00770F9C /* MJRefresh */,
 				49DC3A3D1C91BEF600A0F9D3 /* XKeyBoard */,
@@ -1106,6 +1127,7 @@
 				49DC39EE1C8F1C0900A0F9D3 /* segmented-bg-pressed-left.png in Resources */,
 				49DC39F81C8F1C0900A0F9D3 /* social-icon.png in Resources */,
 				49DC39FB1C8F1C0900A0F9D3 /* star-icon@2x.png in Resources */,
+				4916835E1CBF928A000497B4 /* InputView.xib in Resources */,
 				49D2BEF01C51C9CD0080503E /* Icon2.png in Resources */,
 				49D2BEF41C51C9CD0080503E /* page3.png in Resources */,
 				49DC39EF1C8F1C0900A0F9D3 /* segmented-bg-pressed-left@2x.png in Resources */,
@@ -1169,6 +1191,7 @@
 				49DC39CE1C8DD21C00A0F9D3 /* HJPushDescriptionViewController.swift in Sources */,
 				4972F5C51CB88FC300770F9C /* UIImageView+HighlightedWebCache.m in Sources */,
 				49D2BED91C51BED80080503E /* JVFloatLabeledTextField.m in Sources */,
+				4916835D1CBF928A000497B4 /* InputView.m in Sources */,
 				4972F61C1CBCB7A300770F9C /* HJBookDetailViewController.swift in Sources */,
 				4972F5941CB7A65B00770F9C /* UIScrollView+MJRefresh.m in Sources */,
 				4972F5931CB7A65B00770F9C /* UIScrollView+MJExtension.m in Sources */,
@@ -1185,6 +1208,7 @@
 				49D2BEAF1C4F24980080503E /* HJCircleViewController.swift in Sources */,
 				49DC39C81C8DC67000A0F9D3 /* VPImageCropperViewController.m in Sources */,
 				4972F5C71CB88FC300770F9C /* UIView+WebCacheOperation.m in Sources */,
+				4916835F1CBF928A000497B4 /* UIViewExt.m in Sources */,
 				49D2BEB91C4F742A0080503E /* HJPushNewBookController.swift in Sources */,
 				4972F5BF1CB88FC300770F9C /* SDWebImageManager.m in Sources */,
 				49DC3A021C905E4200A0F9D3 /* IGLDropDownItem.m in Sources */,
