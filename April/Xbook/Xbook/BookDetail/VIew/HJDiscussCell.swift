@@ -34,6 +34,14 @@ class HJDiscussCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        
+        
+        
+        
+    }
+    
+    func initFrame() {
+        
         for view in self.contentView.subviews {
             view.removeFromSuperview()
         }
@@ -56,11 +64,11 @@ class HJDiscussCell: UITableViewCell {
         self.detailLabel?.font = UIFont(name: MY_FONT, size: 15)
         self.detailLabel?.numberOfLines = 0
         self.contentView.addSubview(self.detailLabel!)
-
-        
         
     }
-
+    
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

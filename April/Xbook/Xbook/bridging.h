@@ -9,3 +9,4 @@
 #import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
 #import "inputView.h"
+#import "SWTableViewCell.h"

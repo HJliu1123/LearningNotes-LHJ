@@ -177,6 +177,8 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, In
         
         let vc = HJCommentViewController()
         HJGeneralFactory.addTitleWithTitle(vc, title1: "", title2: "关闭")
+        vc.BookObject = self.BookObject
+        vc.tableView?.mj_header.beginRefreshing()
         self.presentViewController(vc, animated: true) { () -> Void in
             
         }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HJPushBookCell: UITableViewCell {
+class HJPushBookCell: SWTableViewCell {
     
     var bookName : UILabel?
     var editor : UILabel?

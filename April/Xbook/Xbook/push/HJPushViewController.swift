@@ -8,11 +8,13 @@
 
 import UIKit
 
-class HJPushViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HJPushViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SWTableViewCellDelegate {
     
     var dataArr = NSMutableArray()
     var navigationView : UIView!
     var tableView : UITableView?
+    
+    var swipIndexPath : NSIndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +83,21 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    func returnRightBtn() ->[AnyObject] {
+        
+        let btn1 = UIButton(frame: CGRectMake(0, 0, 88, 88))
+        btn1.backgroundColor = UIColor.orangeColor()
+        btn1.setTitle("编辑", forState: .Normal)
+        
+        let btn2 = UIButton(frame: CGRectMake(0, 0, 88, 88))
+        btn2.backgroundColor = UIColor.redColor()
+        btn2.setTitle("编辑", forState: .Normal)
+        
+        return [btn1, btn2]
+    }
+    
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
         let vc = HJBookDetailViewController()
@@ -88,6 +105,33 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, scrollingToState state: SWCellState) {
+        
+        let indexPath = self.tableView?.indexPathForCell(cell)
+        if state == .CellStateRight {
+            if self.swipIndexPath != nil && self.swipIndexPath?.row != indexPath?.row {
+                let swipedCell = self.tableView?.cellForRowAtIndexPath(self.swipIndexPath!) as? HJPushBookCell
+                swipedCell?.hideUtilityButtonsAnimated(true)
+            }
+            self.swipIndexPath = indexPath
+        } else if state == .CellStateCenter {
+            self.swipIndexPath = nil
+
+        }
+        
+    }
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
+        cell.hideUtilityButtonsAnimated(true)
+        
+        let indexPath = self.tableView?.indexPathForCell(cell)
+        print("---------------")
+        print(indexPath?.row)
+        print(index)
+        
+    }
+    
     
     
     //上拉加载、下拉刷新
@@ -132,6 +176,11 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = self.tableView?.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? HJPushBookCell
+        
+        cell?.rightUtilityButtons = self.returnRightBtn()
+        cell?.delegate = self
+        
+        
         let dict = self.dataArr[indexPath.row] as? AVObject
         
         cell?.bookName?.text = "《" + (dict!["BookName"]as! String) + "》:" + (dict!["title"]as! String)

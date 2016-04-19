@@ -12,6 +12,12 @@
 		4916835F1CBF928A000497B4 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4916835C1CBF928A000497B4 /* UIViewExt.m */; };
 		491683631CC09119000497B4 /* HJCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491683621CC09119000497B4 /* HJCommentViewController.swift */; };
 		491683651CC09A62000497B4 /* HJDiscussCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491683641CC09A62000497B4 /* HJDiscussCell.swift */; };
+		491683CB1CC4CD54000497B4 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 491683C01CC4CD54000497B4 /* NSMutableArray+SWUtilityButtons.m */; };
+		491683CC1CC4CD54000497B4 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 491683C21CC4CD54000497B4 /* SWCellScrollView.m */; };
+		491683CD1CC4CD54000497B4 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 491683C41CC4CD54000497B4 /* SWLongPressGestureRecognizer.m */; };
+		491683CE1CC4CD54000497B4 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 491683C61CC4CD54000497B4 /* SWTableViewCell.m */; };
+		491683CF1CC4CD54000497B4 /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 491683C81CC4CD54000497B4 /* SWUtilityButtonTapGestureRecognizer.m */; };
+		491683D01CC4CD54000497B4 /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 491683CA1CC4CD54000497B4 /* SWUtilityButtonView.m */; };
 		4972F5831CB7A65B00770F9C /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4972F5591CB7A65B00770F9C /* MJRefreshAutoFooter.m */; };
 		4972F5841CB7A65B00770F9C /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4972F55B1CB7A65B00770F9C /* MJRefreshBackFooter.m */; };
 		4972F5851CB7A65B00770F9C /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4972F55D1CB7A65B00770F9C /* MJRefreshComponent.m */; };
@@ -148,6 +154,18 @@
 		4916835C1CBF928A000497B4 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		491683621CC09119000497B4 /* HJCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJCommentViewController.swift; sourceTree = "<group>"; };
 		491683641CC09A62000497B4 /* HJDiscussCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJDiscussCell.swift; sourceTree = "<group>"; };
+		491683BF1CC4CD54000497B4 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
+		491683C01CC4CD54000497B4 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
+		491683C11CC4CD54000497B4 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
+		491683C21CC4CD54000497B4 /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCellScrollView.m; sourceTree = "<group>"; };
+		491683C31CC4CD54000497B4 /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWLongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		491683C41CC4CD54000497B4 /* SWLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWLongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		491683C51CC4CD54000497B4 /* SWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTableViewCell.h; sourceTree = "<group>"; };
+		491683C61CC4CD54000497B4 /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewCell.m; sourceTree = "<group>"; };
+		491683C71CC4CD54000497B4 /* SWUtilityButtonTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonTapGestureRecognizer.h; sourceTree = "<group>"; };
+		491683C81CC4CD54000497B4 /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
+		491683C91CC4CD54000497B4 /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
+		491683CA1CC4CD54000497B4 /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
 		4972F5581CB7A65B00770F9C /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		4972F5591CB7A65B00770F9C /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		4972F55A1CB7A65B00770F9C /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -352,6 +370,25 @@
 				4916835C1CBF928A000497B4 /* UIViewExt.m */,
 			);
 			path = InputView;
+			sourceTree = "<group>";
+		};
+		491683BE1CC4CD54000497B4 /* LeftSwipeCell */ = {
+			isa = PBXGroup;
+			children = (
+				491683BF1CC4CD54000497B4 /* NSMutableArray+SWUtilityButtons.h */,
+				491683C01CC4CD54000497B4 /* NSMutableArray+SWUtilityButtons.m */,
+				491683C11CC4CD54000497B4 /* SWCellScrollView.h */,
+				491683C21CC4CD54000497B4 /* SWCellScrollView.m */,
+				491683C31CC4CD54000497B4 /* SWLongPressGestureRecognizer.h */,
+				491683C41CC4CD54000497B4 /* SWLongPressGestureRecognizer.m */,
+				491683C51CC4CD54000497B4 /* SWTableViewCell.h */,
+				491683C61CC4CD54000497B4 /* SWTableViewCell.m */,
+				491683C71CC4CD54000497B4 /* SWUtilityButtonTapGestureRecognizer.h */,
+				491683C81CC4CD54000497B4 /* SWUtilityButtonTapGestureRecognizer.m */,
+				491683C91CC4CD54000497B4 /* SWUtilityButtonView.h */,
+				491683CA1CC4CD54000497B4 /* SWUtilityButtonView.m */,
+			);
+			path = LeftSwipeCell;
 			sourceTree = "<group>";
 		};
 		4972F5561CB7A65B00770F9C /* MJRefresh */ = {
@@ -865,6 +902,7 @@
 		49D2BED11C51BE8C0080503E /* ThirdKit */ = {
 			isa = PBXGroup;
 			children = (
+				491683BE1CC4CD54000497B4 /* LeftSwipeCell */,
 				491683571CBF928A000497B4 /* InputView */,
 				4972F5961CB88FC300770F9C /* SDWebImage */,
 				4972F5561CB7A65B00770F9C /* MJRefresh */,
@@ -1183,6 +1221,7 @@
 				491683631CC09119000497B4 /* HJCommentViewController.swift in Sources */,
 				4972F58A1CB7A65B00770F9C /* MJRefreshAutoStateFooter.m in Sources */,
 				49DC39EB1C8F1C0900A0F9D3 /* AKSegmentedControl.m in Sources */,
+				491683D01CC4CD54000497B4 /* SWUtilityButtonView.m in Sources */,
 				4972F5C41CB88FC300770F9C /* UIImage+WebP.m in Sources */,
 				4972F5851CB7A65B00770F9C /* MJRefreshComponent.m in Sources */,
 				4972F5BB1CB88FC300770F9C /* SDWebImageCompat.m in Sources */,
@@ -1191,18 +1230,22 @@
 				4972F5C01CB88FC300770F9C /* SDWebImagePrefetcher.m in Sources */,
 				4972F5BA1CB88FC300770F9C /* SDImageCache.m in Sources */,
 				49D2BE961C4F224C0080503E /* config.swift in Sources */,
+				491683CE1CC4CD54000497B4 /* SWTableViewCell.m in Sources */,
 				491683651CC09A62000497B4 /* HJDiscussCell.swift in Sources */,
 				49D2BEAD1C4F247B0080503E /* HJMoreViewController.swift in Sources */,
 				4972F61E1CBCDB7D00770F9C /* HJBookViewTabbar.swift in Sources */,
 				49D2BEF81C5200CE0080503E /* HJPhotoPickerController.swift in Sources */,
 				4972F5BC1CB88FC300770F9C /* SDWebImageDecoder.m in Sources */,
+				491683CC1CC4CD54000497B4 /* SWCellScrollView.m in Sources */,
 				49DC39CE1C8DD21C00A0F9D3 /* HJPushDescriptionViewController.swift in Sources */,
 				4972F5C51CB88FC300770F9C /* UIImageView+HighlightedWebCache.m in Sources */,
+				491683CD1CC4CD54000497B4 /* SWLongPressGestureRecognizer.m in Sources */,
 				49D2BED91C51BED80080503E /* JVFloatLabeledTextField.m in Sources */,
 				4916835D1CBF928A000497B4 /* InputView.m in Sources */,
 				4972F61C1CBCB7A300770F9C /* HJBookDetailViewController.swift in Sources */,
 				4972F5941CB7A65B00770F9C /* UIScrollView+MJRefresh.m in Sources */,
 				4972F5931CB7A65B00770F9C /* UIScrollView+MJExtension.m in Sources */,
+				491683CF1CC4CD54000497B4 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				4972F58E1CB7A65B00770F9C /* MJRefreshGifHeader.m in Sources */,
 				49DC3A361C91B87800A0F9D3 /* HJRegisterViewController.swift in Sources */,
 				4972F5901CB7A65B00770F9C /* MJRefreshStateHeader.m in Sources */,
@@ -1242,6 +1285,7 @@
 				49DC39D61C8F08AA00A0F9D3 /* LDXScore.m in Sources */,
 				4972F5BD1CB88FC300770F9C /* SDWebImageDownloader.m in Sources */,
 				4972F5921CB7A65B00770F9C /* MJRefreshConst.m in Sources */,
+				491683CB1CC4CD54000497B4 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				49D2BECF1C51BE370080503E /* HJBookTitleView.swift in Sources */,
 				49D2BE471C4DE7C90080503E /* AppDelegate.swift in Sources */,
 				4972F5841CB7A65B00770F9C /* MJRefreshBackFooter.m in Sources */,
