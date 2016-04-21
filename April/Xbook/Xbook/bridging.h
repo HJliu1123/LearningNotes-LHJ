@@ -1,5 +1,6 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "JVFloatLabeledTextField.h"
+#import "JVFloatLabeledTextView.h"
 #import "VPImageCropperViewController.h"
 #import "LDXScore.h"
 #import "AKSegmentedControl.h"
@@ -10,3 +11,12 @@
 #import "UIImageView+WebCache.h"
 #import "inputView.h"
 #import "SWTableViewCell.h"
+#import "HZPhotoBrowser.h"
+#import <ShareSDK/ShareSDK.h>
+#import "WXApi.h"
+#import "WeiboSDK.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+#import <ShareSDKUI/SSUIShareActionSheetStyle.h>

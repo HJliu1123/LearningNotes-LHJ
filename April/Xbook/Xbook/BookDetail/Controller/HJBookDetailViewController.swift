@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, InputViewDelegate {
+class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, InputViewDelegate, HZPhotoBrowserDelegate {
     
     var BookObject : AVObject?
     
@@ -78,7 +78,15 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, In
         let scoreString = self.BookObject!["score"] as? String
         self.BookTitleView?.score?.show_star = Int(scoreString!)!
         
-        self.BookTitleView?.more?.text = "55个喜欢.5次评论.12452次浏览"
+        let scanNumber = self.BookObject!["scanNumber"] as? NSNumber
+        let loveNumber = self.BookObject!["loveNumber"] as? NSNumber
+        let discussNumber = self.BookObject!["discussNumber"] as? NSNumber
+        
+        self.BookTitleView?.more?.text = "\(scanNumber)个喜欢+\(loveNumber)次评论.+\(discussNumber)次浏览"
+        let tap = UITapGestureRecognizer(target: self, action: #selector(HJBookDetailViewController.photoBrowser as (HJBookDetailViewController) -> () -> ()))
+        self.BookTitleView?.cover?.addGestureRecognizer(tap)
+        self.BookTitleView?.cover?.userInteractionEnabled = true
+        
         
     }
     
@@ -157,7 +165,7 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, In
             self.layView = UIView(frame: self.view.frame)
             self.layView?.backgroundColor = UIColor.grayColor()
             self.layView?.alpha = 0;
-            let tap = UITapGestureRecognizer(target: self, action: Selector("tapInputView"))
+            let tap = UITapGestureRecognizer(target: self, action: #selector(HJBookDetailViewController.tapInputView))
             self.layView?.addGestureRecognizer(tap)
         }
         self.view.insertSubview(self.layView!, belowSubview: self.input!)
@@ -218,9 +226,68 @@ class HJBookDetailViewController: UIViewController, HJBookViewTabbarDelegate, In
     }
     
     func shareAction() {
-        print("3")
+        let shareParams = NSMutableDictionary()
+        shareParams.SSDKSetupShareParamsByText("分享内容", images: self.BookTitleView?.cover?.image, url: NSURL(string: "http://www.baidu.com"), title: "标题", type: SSDKContentType.Image)
+        
+//        单一分享
+        ShareSDK.share(.TypeSinaWeibo, parameters: shareParams) { (state : SSDKResponseState, userData : [NSObject : AnyObject]!, contentEntity : SSDKContentEntity!, error : NSError!) -> Void in
+            
+            switch state {
+            case SSDKResponseState.Success:
+                ProgressHUD.showSuccess("分享成功")
+                break
+            case SSDKResponseState.Fail:
+                ProgressHUD.showError("分享失败")
+                break
+            case SSDKResponseState.Cancel:
+                ProgressHUD.showError("取消分享")
+                break
+            default:
+                break
+            }
+        
+        }
+        
+//        分享列表
+//        ShareSDK.showShareActionSheet(self.view, items: [22], shareParams: shareParams) { (state, platform, userData, contentEntity, error, success) -> Void in
+//            switch state {
+//            case SSDKResponseState.Success:
+//                ProgressHUD.showSuccess("分享成功")
+//                break
+//            case SSDKResponseState.Fail:
+//                ProgressHUD.showError("分享失败")
+//                break
+//            case SSDKResponseState.Cancel:
+//                ProgressHUD.showError("取消分享")
+//                break
+//            default:
+//                break
+//            }
+//        }
+        
+        
     }
     
+    func photoBrowser() {
+        
+        let photoBrowser = HZPhotoBrowser()
+        photoBrowser.imageCount = 1
+        photoBrowser.currentImageIndex = 0
+        photoBrowser.delegate = self
+        photoBrowser.show()
+        
+    }
+    
+    func photoBrowser(browser: HZPhotoBrowser!, placeholderImageForIndex index: Int) -> UIImage! {
+        return self.BookTitleView?.cover?.image
+    }
+    
+    
+    func photoBrowser(browser: HZPhotoBrowser!, highQualityImageURLForIndex index: Int) -> NSURL! {
+        let coverFile = self.BookObject!["cover"] as? AVFile
+        return NSURL(string: coverFile!.url!)
+        
+    }
     
     
     

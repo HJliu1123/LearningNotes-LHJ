@@ -16,7 +16,7 @@ class HJRankViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         
         
-//        AVUser.logOut()
+        AVUser.logOut()
         
         
         if AVUser.currentUser() == nil {

@@ -12,7 +12,7 @@ typealias HJPushDescriptionViewControllerBlock = (description : String) ->Void
 
 class HJPushDescriptionViewController: UIViewController {
     
-    var textView : JVFloatLabeledTextField?
+    var textView : JVFloatLabeledTextView?
     var callBack : HJPushDescriptionViewControllerBlock?
     
     
@@ -20,7 +20,7 @@ class HJPushDescriptionViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.whiteColor()
-        self.textView = JVFloatLabeledTextField(frame: CGRectMake(8, 58, SCREEN_WIDTH - 16, SCREEN_HIGHT - 58 - 8))
+        self.textView = JVFloatLabeledTextView(frame: CGRectMake(8, 58, SCREEN_WIDTH - 16, SCREEN_HIGHT - 58 - 8))
         self.view.addSubview(self.textView!)
         self.textView?.placeholder = "     你可以在这里撰写详细的评价、吐槽、介绍~~~"
         self.textView?.font = UIFont(name: MY_FONT, size: 17)
@@ -45,14 +45,14 @@ class HJPushDescriptionViewController: UIViewController {
         }
     }
 
-//    func keyboardWillHideNotification(notification : NSNotification) {
-//        self.textView?.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-//    }
-//    
-//    func keyboardWillShowNotification(notification : NSNotification) {
-//        let rect = XKeyBoard.returnKeyBoardWindow(notification)
-//        self.textView?.contentInset = UIEdgeInsetsMake(0, 0, rect.size.height, 0)
-//    }
+    func keyboardWillHideNotification(notification : NSNotification) {
+        self.textView?.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+    }
+    
+    func keyboardWillShowNotification(notification : NSNotification) {
+        let rect = XKeyBoard.returnKeyBoardWindow(notification)
+        self.textView?.contentInset = UIEdgeInsetsMake(0, 0, rect.size.height, 0)
+    }
     
     
     

@@ -30,9 +30,9 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView?.registerClass(HJPushBookCell.classForCoder(), forCellReuseIdentifier: "Cell")
         self.tableView?.tableFooterView = UIView()
         
-        self.tableView?.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefresh"))
+        self.tableView?.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(HJPushViewController.headerRefresh))
         
-        self.tableView?.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefresh"))
+        self.tableView?.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: #selector(HJPushViewController.footerRefresh))
         
         self.tableView?.mj_header.beginRefreshing()
         
@@ -66,7 +66,7 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
         addBookButton.titleLabel?.font = UIFont(name: MY_FONT, size: 15)
         addBookButton.contentHorizontalAlignment = .Left
         
-        addBookButton.addTarget(self, action: Selector("pushNewBook"), forControlEvents: .TouchUpInside)
+        addBookButton.addTarget(self, action: #selector(HJPushViewController.pushNewBook), forControlEvents: .TouchUpInside)
         
         navigationView.addSubview(addBookButton)
         
@@ -91,7 +91,7 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
         
         let btn2 = UIButton(frame: CGRectMake(0, 0, 88, 88))
         btn2.backgroundColor = UIColor.redColor()
-        btn2.setTitle("编辑", forState: .Normal)
+        btn2.setTitle("删除", forState: .Normal)
         
         return [btn1, btn2]
     }
@@ -126,9 +126,56 @@ class HJPushViewController: UIViewController, UITableViewDataSource, UITableView
         cell.hideUtilityButtonsAnimated(true)
         
         let indexPath = self.tableView?.indexPathForCell(cell)
-        print("---------------")
-        print(indexPath?.row)
-        print(index)
+        let object = self.dataArr[indexPath!.row] as? AVObject
+        
+        if index == 0 {//编辑
+            
+            let vc = HJPushNewBookController()
+            HJGeneralFactory.addTitleWithTitle(vc, title1: "关闭", title2: "发布")
+            
+            vc.fixType = "fix"
+            vc.BookObject = object
+            vc.fixBook()
+            self.presentViewController(vc, animated: true, completion: { () -> Void in
+                
+            })
+            
+            
+        } else {//删除
+            
+            ProgressHUD.show("")
+            
+            let discussQuery = AVQuery(className: "discuss")
+            discussQuery.whereKey("BookObject", equalTo: object)
+            discussQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                for Book in results {
+                    let BookObject = Book as? AVObject
+                    BookObject?.deleteInBackground()
+                }
+            })
+            
+            let loveQuery = AVQuery(className: "Love")
+            loveQuery.whereKey("BookObject", equalTo: object)
+            loveQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                for Book in results {
+                    let BookObject = Book as? AVObject
+                    BookObject?.deleteInBackground()
+                }
+            })
+            
+            object?.deleteInBackgroundWithBlock({ (success, error) -> Void in
+                if success {
+                    ProgressHUD.showSuccess("删除成功")
+                    self.dataArr.removeObjectAtIndex((indexPath?.row)!)
+                    self.tableView?.reloadData()
+                } else {
+                
+                }
+            })
+            
+            
+        }
+        
         
     }
     

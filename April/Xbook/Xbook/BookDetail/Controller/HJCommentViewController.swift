@@ -44,8 +44,8 @@ class HJCommentViewController: UIViewController, UITableViewDataSource, UITableV
         self.tableView?.tableFooterView = UIView()
         self.view.addSubview(self.tableView!)
         
-        self.tableView?.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefresh")
-        self.tableView?.mj_footer = MJRefreshBackFooter(refreshingTarget: self, refreshingAction: "footerRefresh")
+        self.tableView?.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(HJCommentViewController.headerRefresh))
+        self.tableView?.mj_footer = MJRefreshBackFooter(refreshingTarget: self, refreshingAction: #selector(HJCommentViewController.footerRefresh))
         
         self.input = NSBundle.mainBundle().loadNibNamed("InputView", owner: self, options: nil).last as? InputView
         self.input?.frame = CGRectMake(0, SCREEN_HIGHT - 44, SCREEN_WIDTH, 44)
@@ -165,6 +165,10 @@ class HJCommentViewController: UIViewController, UITableViewDataSource, UITableV
             if success {
                 self.input?.inputTextView?.resignFirstResponder()
                 ProgressHUD.showSuccess("评论成功")
+                
+                self.BookObject?.incrementKey("discussNumber")
+                self.BookObject?.saveInBackground()
+                
             } else {
                 
             }

@@ -179,8 +179,8 @@ class HJPushTypeViewController: UIViewController ,IGLDropDownMenuDelegate{
         self.segmentController2?.initButtonWithTitleandImage(buttonArray2)
         self.view.addSubview(self.segmentController2!)
         
-        self.segmentController1?.addTarget(self, action: Selector("segmentControllerAction:"), forControlEvents: .ValueChanged)
-        self.segmentController2?.addTarget(self, action: Selector("segmentControllerAction:"), forControlEvents: .ValueChanged)
+        self.segmentController1?.addTarget(self, action: #selector(HJPushTypeViewController.segmentControllerAction(_:)), forControlEvents: .ValueChanged)
+        self.segmentController2?.addTarget(self, action: #selector(HJPushTypeViewController.segmentControllerAction(_:)), forControlEvents: .ValueChanged)
         
     }
     
@@ -229,7 +229,7 @@ class HJPushTypeViewController: UIViewController ,IGLDropDownMenuDelegate{
     
     func createDropMenu(array1:Array<NSDictionary>, array2:Array<NSDictionary>) {
         let dropDownItem1 = NSMutableArray()
-        for var i = 0; i < array1.count; i++ {
+        for i in 0 ..< array1.count {
             let dict = array1[i]
             let item = IGLDropDownItem()
             item.text = dict["title"] as? String
@@ -237,7 +237,7 @@ class HJPushTypeViewController: UIViewController ,IGLDropDownMenuDelegate{
         }
         
         let dropDownItem2 = NSMutableArray()
-        for var i = 0; i < array2.count; i++ {
+        for i in 0 ..< array2.count {
             let dict = array2[i]
             let item = IGLDropDownItem()
             item.text = dict["title"] as? String

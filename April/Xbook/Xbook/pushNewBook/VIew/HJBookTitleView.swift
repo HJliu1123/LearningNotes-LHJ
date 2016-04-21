@@ -28,7 +28,7 @@ class HJBookTitleView: UIView {
         self.bookCover = UIButton(frame: CGRectMake(10, 8, 110, 141))
         self.bookCover?.setImage(UIImage(named: "Cover"), forState: .Normal)
         self.addSubview(self.bookCover!)
-        self.bookCover?.addTarget(self, action: Selector("choiceCover"), forControlEvents: .TouchUpInside)
+        self.bookCover?.addTarget(self, action: #selector(BookTitleDelegate.choiceCover), forControlEvents: .TouchUpInside)
         
         self.bookName = JVFloatLabeledTextField(frame: CGRectMake(128, 8 + 40, SCREEN_WIDTH - 128 - 15, 30))
         self.bookEditor = JVFloatLabeledTextField(frame: CGRectMake(128, 8 + 70 + 40, SCREEN_WIDTH - 128 - 15, 30))

@@ -29,7 +29,7 @@ class HJGeneralFactory: NSObject {
         button2.tag = 1235
         target.view.addSubview(button2)
         
-        button1.addTarget(target, action: Selector("close"), forControlEvents: .TouchUpInside)
+        button1.addTarget(target, action: #selector(NSStream.close), forControlEvents: .TouchUpInside)
         button2.addTarget(target, action: Selector("sure"), forControlEvents: .TouchUpInside)
 
         

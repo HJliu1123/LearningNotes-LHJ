@@ -10,9 +10,9 @@ import UIKit
 
 class HJPushBook: NSObject {
     
-    static func pushBookInBack(dict : NSDictionary) {
+    static func pushBookInBack(dict : NSDictionary, object: AVObject) {
         
-        let object = AVObject(className: "Book")
+//        let object = AVObject(className: "Book")
         object.setObject(dict["BookName"], forKey: "BookName")
         object.setObject(dict["BookEditor"], forKey: "BookEditor")
 //        object.setObject(dict["BookCover"], forKey: "BookCover")

@@ -27,12 +27,12 @@ class HJBookViewTabbar: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
         let imageName = ["Pen 4", "chat 3", "heart", "box outgoing"]
-        for var i = 0; i < 4; i++ {
+        for i in 0 ..< 4 {
             let button = UIButton(frame: CGRectMake(CGFloat(i)*frame.size.width/4, 0, frame.size.width/4, frame.size.height))
             button.setImage(UIImage(named: imageName[i]), forState: .Normal)
             self.addSubview(button)
             button.tag = i
-            button.addTarget(self, action: Selector("BookTabbarAction:"), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(HJBookViewTabbar.BookTabbarAction(_:)), forControlEvents: .TouchUpInside)
         }
         
         
@@ -53,7 +53,7 @@ class HJBookViewTabbar: UIView {
         let context = UIGraphicsGetCurrentContext()
         CGContextSetLineWidth(context, 0.5)
         CGContextSetRGBFillColor(context, 231/255, 231/255, 231/255, 1.0)
-        for var i = 0; i < 4; i++ {
+        for i in 0 ..< 4 {
             CGContextMoveToPoint(context, CGFloat(i)*rect.size.width/4, rect.size.height*0.1)
             CGContextAddLineToPoint(context, CGFloat(i)*rect.size.width/4, CGFloat(i)*rect.size.height*0.9)
         }
@@ -71,10 +71,13 @@ class HJBookViewTabbar: UIView {
             
         case 0:
             delegate?.comment()
+            break
         case 1:
             delegate?.commentController()
+            break
         case 2:
             delegate?.likeBook(button)
+            break
         case 3:
             delegate?.shareAction()
         default :

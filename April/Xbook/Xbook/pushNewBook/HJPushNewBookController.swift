@@ -10,7 +10,7 @@ import UIKit
 
 class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerDelegate,VPImageCropperDelegate,UITableViewDataSource,UITableViewDelegate{
 
-    var bookTitle : HJBookTitleView?
+    var bookTitleView : HJBookTitleView?
     
     var tableView : UITableView?
     
@@ -26,6 +26,9 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
     
     var book_Description = ""
     
+    var BookObject : AVObject?
+    var fixType : String?
+    
     var showScore = false
     
     override func viewDidLoad() {
@@ -33,9 +36,9 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
 
         self.view.backgroundColor = UIColor.whiteColor()
         
-        self.bookTitle = HJBookTitleView(frame: CGRectMake(0, 40, SCREEN_WIDTH, 160))
-        self.bookTitle?.delegate = self
-        self.view.addSubview(self.bookTitle!)
+        self.bookTitleView = HJBookTitleView(frame: CGRectMake(0, 40, SCREEN_WIDTH, 160))
+        self.bookTitleView?.delegate = self
+        self.view.addSubview(self.bookTitleView!)
         
         self.tableView = UITableView(frame: CGRectMake(0, 200, SCREEN_WIDTH, SCREEN_HIGHT - 200), style: .Grouped)
         //是没有内容的线条消失
@@ -54,14 +57,44 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
         self.score?.max_star = 5
         self.score?.show_star = 5
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("pushBookNotification:"), name: "pushBookNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HJPushNewBookController.pushBookNotification(_:)), name: "pushBookNotification", object: nil)
         
     }
+    
+    func fixBook() {
+        
+        if self.fixType == "fix" {
+            self.bookTitleView?.bookName?.text = self.BookObject!["BookName"] as? String
+            self.bookTitleView?.bookEditor?.text = self.BookObject!["BookEditor"] as? String
+            let coverFile = self.BookObject!["cover"] as? AVFile
+            coverFile?.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                self.bookTitleView?.bookCover?.setImage(UIImage(data: data), forState: .Normal)
+            })
+            
+            self.book_Title = (self.BookObject!["title"] as? String)!
+            self.type = (self.BookObject!["type"] as? String)!
+            self.detailType = (self.BookObject!["detailType"] as? String)!
+            self.book_Description = (self.BookObject!["description"] as? String)!
+            self.score?.show_star = (Int)((self.BookObject!["score"] as? String)!)!
+            if self.book_Description != "" {
+                self.titleArray.append("")
+            }
+            
+        }
+        
+        
+    }
+    
+    
     
     func pushBookNotification(notification: NSNotification) {
         let dict = notification.userInfo
         if (String(dict!["success"]!)) == "true" {
-            ProgressHUD.showSuccess("上传成功")
+            if self.fixType == "fix" {
+                ProgressHUD.showSuccess("修改成功")
+            } else {
+                ProgressHUD.showSuccess("上传成功")
+            }
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
                 
             })
@@ -86,6 +119,8 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
     
     
     
+    
+    
     func close() {
         self.dismissViewControllerAnimated(true) { () -> Void in
             
@@ -96,9 +131,9 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
         
         
         let dict = [
-            "BookName" : (self.bookTitle?.bookName?.text)!,
-            "BookEditor" : (self.bookTitle?.bookEditor?.text)!,
-            "BookCover" : (self.bookTitle?.bookCover?.currentImage)!,
+            "BookName" : (self.bookTitleView?.bookName?.text)!,
+            "BookEditor" : (self.bookTitleView?.bookEditor?.text)!,
+            "BookCover" : (self.bookTitleView?.bookCover?.currentImage)!,
             "title" : self.book_Title,
             "score" : String((score?.show_star)!),
             "type" : self.type,
@@ -107,9 +142,9 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
         ]
         
         ProgressHUD.show("")
-        
-        HJPushBook.pushBookInBack(dict)
-        
+        if self.fixType == "fix" {
+            HJPushBook.pushBookInBack(dict, object: BookObject!)
+        }
         
         
     }
@@ -141,13 +176,17 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
     *VPImageDelegate
     */
     func imageCropper(cropperViewController: VPImageCropperViewController!, didFinished editedImage: UIImage!) {
-        self.bookTitle?.bookCover?.setImage(editedImage, forState: .Normal)
+        self.bookTitleView?.bookCover?.setImage(editedImage, forState: .Normal)
         cropperViewController.dismissViewControllerAnimated(true) { () -> Void in
             
         }
     }
     
     func imageCropperDidCancel(cropperViewController: VPImageCropperViewController!) {
+        
+        cropperViewController.dismissViewControllerAnimated(true) { 
+            
+        }
         
     }
     
@@ -178,7 +217,7 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
         
         var row = indexPath.row
         if self.showScore && row > 1 {
-            row--
+            row -= 1
         }
         switch row {
         case 0:
@@ -330,3 +369,9 @@ class HJPushNewBookController: UIViewController,BookTitleDelegate,HJPhotoPickerD
     
     
 }
+
+
+
+
+
+

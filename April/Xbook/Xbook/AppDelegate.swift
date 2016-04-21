@@ -16,10 +16,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        
+        
+        
+        
+        
+        
+        
         AVOSCloud.setApplicationId("AmK5ueFiWWSCYr5Fyv3clqnL-gzGzoHsz", clientKey: "RwtFfpvtsSy7Uxsl95Sx5vCz")
         
 //        @"AmK5ueFiWWSCYr5Fyv3clqnL-gzGzoHsz"
-//        clientKey:@"RwtFfpvtsSy7Uxsl95Sx5vCz"];
+//        @"clientKey:@"RwtFfpvtsSy7Uxsl95Sx5vCz"
+        
+//        集成分享
+        ShareSDK.registerApp("11e97eb26807d", activePlatforms: [SSDKPlatformType.TypeSinaWeibo.rawValue, SSDKPlatformType.TypeWechat.rawValue, SSDKPlatformType.TypeQQ.rawValue, SSDKPlatformType.TypeTencentWeibo.rawValue], onImport: { (platform : SSDKPlatformType) in
+            switch platform {
+                
+            case SSDKPlatformType.TypeWechat:
+                ShareSDKConnector.connectWeChat(WXApi.classForCoder())
+                break
+            case SSDKPlatformType.TypeQQ:
+                ShareSDKConnector.connectQQ(QQApiInterface.classForCoder(), tencentOAuthClass: TencentOAuth.classForCoder())
+                break
+                
+            default :
+                break
+            }
+        }) { (platform : SSDKPlatformType, appinfo : NSMutableDictionary!) in
+            
+            switch platform {
+                
+            case SSDKPlatformType.TypeSinaWeibo:
+                appinfo.SSDKSetupSinaWeiboByAppKey("3354611248", appSecret: "a9704e40f278edf4b7d22edb671bcc8e", redirectUri: "http://www.sharesdk.cn", authType: SSDKAuthTypeBoth)
+                break
+            
+                
+            default :
+                break
+                
+            }
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         self.window = UIWindow(frame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HIGHT))
