@@ -16,31 +16,11 @@ class HJRankViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         
         
-        AVUser.logOut()
-        
-        
-        if AVUser.currentUser() == nil {
-            let story = UIStoryboard(name: "login", bundle: nil)
-            let loginVc = story.instantiateViewControllerWithIdentifier("Login")
-            self.presentViewController(loginVc, animated: true, completion: { () -> Void in
-                
-            })
-        }
         
         
         
         
-        
-//        let label =  UILabel(frame: CGRectMake(100, 100, 200, 30))
-//        
-//        label.text = "你深V sal 撒进房间"
-//        label.font = UIFont(name: MY_FONT, size: 14)
-//        label.textColor = UIColor.blackColor()
-//        label.textAlignment = NSTextAlignment.Center
-//        label.adjustsFontSizeToFitWidth = true
-//        
-//        
-//        self.view.addSubview(label)
+
         
         
     }

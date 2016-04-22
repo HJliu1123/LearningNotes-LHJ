@@ -30,9 +30,12 @@ class HJLoginViewController: UIViewController {
         
         AVUser.logInWithUsernameInBackground(self.userName.text, password: self.password.text) { (user, error) -> Void in
             if error == nil {
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    
-                })
+                
+                let tabbarVC = HJTabbarController()
+                
+                UIApplication.sharedApplication().windows[0].rootViewController = tabbarVC
+                
+                
             } else {
                 if error.code == 210 {
                     ProgressHUD.showError("用户名或密码错误！")

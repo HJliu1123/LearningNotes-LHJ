@@ -119,6 +119,7 @@
 		49D7BB931CC7805D00FDFEA0 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D7BB861CC7805D00FDFEA0 /* MOBFoundation.framework */; };
 		49D7BB941CC7805D00FDFEA0 /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 49D7BB871CC7805D00FDFEA0 /* ShareSDK.bundle */; };
 		49D7BB951CC7805D00FDFEA0 /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D7BB881CC7805D00FDFEA0 /* ShareSDKConnector.framework */; };
+		49D7BB971CC8B9C500FDFEA0 /* HJTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D7BB961CC8B9C500FDFEA0 /* HJTabbarController.swift */; };
 		49DC39C81C8DC67000A0F9D3 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DC39C71C8DC67000A0F9D3 /* VPImageCropperViewController.m */; };
 		49DC39CA1C8DD1E600A0F9D3 /* HJPushTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DC39C91C8DD1E600A0F9D3 /* HJPushTitleViewController.swift */; };
 		49DC39CC1C8DD20300A0F9D3 /* HJPushTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DC39CB1C8DD20300A0F9D3 /* HJPushTypeViewController.swift */; };
@@ -358,6 +359,7 @@
 		49D7BB861CC7805D00FDFEA0 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		49D7BB871CC7805D00FDFEA0 /* ShareSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDK.bundle; sourceTree = "<group>"; };
 		49D7BB881CC7805D00FDFEA0 /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
+		49D7BB961CC8B9C500FDFEA0 /* HJTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HJTabbarController.swift; path = Xbook/HJTabbarController.swift; sourceTree = SOURCE_ROOT; };
 		49DC39C61C8DC67000A0F9D3 /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
 		49DC39C71C8DC67000A0F9D3 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		49DC39C91C8DD1E600A0F9D3 /* HJPushTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HJPushTitleViewController.swift; path = ../VIew/HJPushTitleViewController.swift; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 				49D2BE9A1C4F234E0080503E /* rank */,
 				49D2BE9B1C4F234E0080503E /* search */,
 				49D2BE461C4DE7C90080503E /* AppDelegate.swift */,
+				49D7BB961CC8B9C500FDFEA0 /* HJTabbarController.swift */,
 				49D2BE4D1C4DE7C90080503E /* Assets.xcassets */,
 				49D2BE4F1C4DE7C90080503E /* LaunchScreen.storyboard */,
 				49D2BE521C4DE7C90080503E /* Info.plist */,
@@ -1459,6 +1462,7 @@
 				4916835D1CBF928A000497B4 /* InputView.m in Sources */,
 				4972F61C1CBCB7A300770F9C /* HJBookDetailViewController.swift in Sources */,
 				4972F5941CB7A65B00770F9C /* UIScrollView+MJRefresh.m in Sources */,
+				49D7BB971CC8B9C500FDFEA0 /* HJTabbarController.swift in Sources */,
 				4972F5931CB7A65B00770F9C /* UIScrollView+MJExtension.m in Sources */,
 				491683CF1CC4CD54000497B4 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				4972F58E1CB7A65B00770F9C /* MJRefreshGifHeader.m in Sources */,
@@ -1670,6 +1674,7 @@
 					"-ObjC",
 					"-licucore",
 					"-lz",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zzz.Xbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1709,6 +1714,7 @@
 					"-ObjC",
 					"-licucore",
 					"-lz",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zzz.Xbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
