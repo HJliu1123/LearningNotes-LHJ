@@ -23,8 +23,8 @@ class HJTreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     
     var tempData : NSMutableArray?
     
-    init(frame: CGRect, style: UITableViewStyle, data: NSArray) {
-        super.init(frame: frame, style: style)
+    init(frame: CGRect, data: NSArray) {
+        super.init(frame: frame, style: .Plain)
         
         self.delegate = self
         self.dataSource = self
@@ -150,7 +150,7 @@ class HJTreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
             node?.expand = false
         }
         if endPosition > startPosition {
-            tempData?.removeObjectsInRange(NSRange.init(location: startPosition!, length: endPosition! - startPosition! - 1))
+            tempData?.removeObjectsInRange(NSRange.init(location: startPosition! + 1, length: endPosition! - startPosition! - 1))
         }
         
         
