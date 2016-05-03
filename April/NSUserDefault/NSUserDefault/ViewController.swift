@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         
         self.login()
         
+        self.deleteData()
         
         
     }
@@ -47,7 +48,10 @@ class ViewController: UIViewController {
         
     }
     
-
+    func deleteData() {
+        userDefault.removeObjectForKey("userName")
+        userDefault.removeObjectForKey("password")
+    }
     
     
     
