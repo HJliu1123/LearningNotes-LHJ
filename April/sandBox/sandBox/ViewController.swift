@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+enum errorType {
+    case DiscFull, DataTooBig
+}
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
