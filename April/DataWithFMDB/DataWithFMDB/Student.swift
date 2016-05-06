@@ -15,6 +15,11 @@ class Student: NSObject {
     var sex : String?
     var age : Int?
     
-    
+    init(id : Int, name : String, sex : String, age : Int) {
+        self.id = id
+        self.name = name
+        self.sex = sex
+        self.age = age
+    }
     
 }
